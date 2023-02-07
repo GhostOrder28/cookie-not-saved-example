@@ -9,7 +9,7 @@ async function sendCredentials () {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
-    }).then(r => r.json()).catch(e => e.json());
+    }).then(r => r.json());
     responsePlaceHolder.innerHTML = res
   } catch (err) {
     throw new Error(`there was an error, ${err}`)
