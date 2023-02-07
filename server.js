@@ -66,14 +66,10 @@ app.get('*', (_, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
-app.use((err, res, next) => {
-  console.log(err);
-})
-
 const server = https.createServer({
   cert: readFileSync(`${path.resolve()}/security/localhost.crt`),
   key: readFileSync(`${path.resolve()}/security/localhost.key`),
 }, app);
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => { console.log(`listening to port ${PORT}`); })
