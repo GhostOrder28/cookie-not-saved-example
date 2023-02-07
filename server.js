@@ -1,5 +1,6 @@
-const https = require('https');
-const { readFileSync } = require('fs');
+// const https = require('https');
+const http = require('http');
+// const { readFileSync } = require('fs');
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -66,10 +67,12 @@ app.get('*', (_, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
-const server = https.createServer({
-  cert: readFileSync(`${path.resolve()}/security/localhost.crt`),
-  key: readFileSync(`${path.resolve()}/security/localhost.key`),
-}, app);
+// const server = https.createServer({
+//   cert: readFileSync(`${path.resolve()}/security/localhost.crt`),
+//   key: readFileSync(`${path.resolve()}/security/localhost.key`),
+// }, app);
+
+const server = http.createServer(app);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => { console.log(`listening to port ${PORT}`); })
